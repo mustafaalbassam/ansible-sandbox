@@ -1,0 +1,41 @@
+---
+ 
+- hosts: all
+  become: true
+  pre_tasks:
+ 
+  - name: update repository index (Rhel8)
+    tags: always
+    dnf:
+      update_cache: yes
+      changed_when: false
+    when: ansible_distribution == "Rhel8"
+ 
+  - name: update repository index (Ubuntu)
+    tags: always
+    apt:
+      update_cache: yes
+      changed_when: false
+    when: ansible_distribution == "Ubuntu"
+ 
+- hosts: all
+  become: true
+  tasks:
+ 
+  - name: create simone user
+    user:
+      name: s1m0n3
+      groups: root
+
+  - name: add ssh key for simone
+    authorized_key:
+      user: s1m0n3
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNCFUlZm6ptI5fN1wClWwsXrjHHQd6z1ORFEO3miJKB dev-local-key"
+ 
+  - name: add sudoers file for simone
+    copy:
+      src: sudoer_s1m0n3
+      dest: /etc/sudoers.d/s1m0n3
+      owner: root
+      group: root
+      mode: 0440
