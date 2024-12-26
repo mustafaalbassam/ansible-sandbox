@@ -1,4 +1,4 @@
-- name: add ssh key for s1m0n3
+- name: add ssh key for moose
   authorized_key:
-    user: s1m0n3
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNCFUlZm6ptI5fN1wClWwsXrjHHQd6z1ORFEO3miJKB dev-local-key"
+    user: moose
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2lHAFJEY1VgQM3Qey0mmtPKk1wSgKYIAScqiYcETXL local-dev-key"

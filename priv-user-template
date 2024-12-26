@@ -22,20 +22,21 @@
   become: true
   tasks:
  
-  - name: create simone user
+  - name: create moose user
     user:
-      name: s1m0n3
+      name: moose
       groups: root
 
-  - name: add ssh key for simone
+  - name: add ssh key for moose
     authorized_key:
-      user: s1m0n3
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNCFUlZm6ptI5fN1wClWwsXrjHHQd6z1ORFEO3miJKB dev-local-key"
+      user: moose
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2lHAFJEY1VgQM3Qey0mmtPKk1wSgKYIAScqiYcETXL local-dev-key
+"
  
-  - name: add sudoers file for simone
+  - name: add sudoers file for moose
     copy:
-      src: sudoer_s1m0n3
-      dest: /etc/sudoers.d/s1m0n3
+      src: sudoer_moose
+      dest: /etc/sudoers.d/moose
       owner: root
       group: root
       mode: 0440
